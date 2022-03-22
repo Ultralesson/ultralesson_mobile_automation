@@ -1,11 +1,14 @@
 package com.ultralesson.training.mobile;
 
+import com.ultralesson.training.mobile.driver.DriverCreator;
 import com.ultralesson.training.mobile.models.User;
 import com.ultralesson.training.mobile.screens.HomeScreen;
 import com.ultralesson.training.mobile.screens.LauncherScreen;
 import com.ultralesson.training.mobile.screens.ProfileScreen;
 import com.ultralesson.training.mobile.screens.SignupScreen;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +17,14 @@ public class ClientSignupTests {
     @Test
     public void clientShouldBeAbleToSignupSuccessfully() {
         //Arrange
-        AppiumDriver mobileDriver = null;
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("platformName", "android");
+        desiredCapabilities.setCapability("deviceName", "Google Pixel");
+        desiredCapabilities.setCapability("automationName", "UiAutomator2");
+        desiredCapabilities.setCapability("app", "app/ul-coach.apk");
+
+        AppiumDriver mobileDriver = new DriverCreator().createDriverContext(desiredCapabilities);
+
         LauncherScreen launcherScreen = new LauncherScreen(mobileDriver); // Assume mobileDriver is created and handy.
         launcherScreen.navToClientSignup();
         User client = new User("randomclient@gmail.com",
