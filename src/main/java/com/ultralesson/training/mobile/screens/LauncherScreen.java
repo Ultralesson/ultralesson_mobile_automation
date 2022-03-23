@@ -14,7 +14,7 @@ public class LauncherScreen extends MobileScreen {
     }
 
     public SignupScreen navToClientSignup() {
-        actions.click(createCoachAccountBtn);
+        actions.click(createClientAccountBtn);
         return new SignupScreen(appiumDriver);
     }
 
