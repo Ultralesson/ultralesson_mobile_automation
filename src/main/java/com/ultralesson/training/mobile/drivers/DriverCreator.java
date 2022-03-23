@@ -1,8 +1,6 @@
 package com.ultralesson.training.mobile.drivers;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -12,30 +10,35 @@ import java.util.Map;
 
 public class DriverCreator {
 
-    public AppiumDriver create(DesiredCapabilities desiredCapabilities) {
-        Platform platform = desiredCapabilities.getPlatformName();
-        switch (platform) {
-            case ANDROID:
-                return new AndroidDriver(desiredCapabilities);
-            case IOS:
-                return new IOSDriver(desiredCapabilities);
-            default:
-                throw new RuntimeException("Missing platform!! Add platformName capability.");
-        }
-    }
+  private ThreadLocal<AppiumDriver> appiumDriverThreadLocal;
+  private ThreadLocal<ServerManager> serverManagerThreadLocal;
 
-    public AppiumDriver createDriverContext(DesiredCapabilities desiredCapabilities) {
-        Platform platform = desiredCapabilities.getPlatformName();
-        DriverManager<AppiumDriver> mobileDriverManager = getDeviceManagers().get(platform);
-        URL url = new ServerManager().start();
-        return new MobileDriverContext(mobileDriverManager).create(url,desiredCapabilities);
-    }
+  public DriverCreator() {
+    appiumDriverThreadLocal = new ThreadLocal<>();
+    serverManagerThreadLocal = new ThreadLocal<>();
+    serverManagerThreadLocal.set(new ServerManager());
+  }
 
-    // Build a Device Managers Map
-    public Map<Platform, DriverManager<AppiumDriver>> getDeviceManagers() {
-        Map<Platform,DriverManager<AppiumDriver>> driverManagerMap = new HashMap<>();
-        driverManagerMap.put(Platform.ANDROID, new AndroidDriverManager());
-        driverManagerMap.put(Platform.IOS, new IOSDriverManager());
-        return driverManagerMap;
-    }
+  public AppiumDriver create(DesiredCapabilities desiredCapabilities) {
+    Platform platform = desiredCapabilities.getPlatformName();
+    DriverManager<AppiumDriver> mobileDriverManager = getDeviceManagers().get(platform);
+    URL url = serverManagerThreadLocal.get().start();
+    AppiumDriver appiumDriver =
+        new MobileDriverContext(mobileDriverManager).create(url, desiredCapabilities);
+    appiumDriverThreadLocal.set(appiumDriver);
+    return appiumDriverThreadLocal.get();
+  }
+
+  public void destroy() {
+    serverManagerThreadLocal.get().stop();
+    appiumDriverThreadLocal.get().quit();
+  }
+
+  // Build a Device Managers Map
+  public Map<Platform, DriverManager<AppiumDriver>> getDeviceManagers() {
+    Map<Platform, DriverManager<AppiumDriver>> driverManagerMap = new HashMap<>();
+    driverManagerMap.put(Platform.ANDROID, new AndroidDriverManager());
+    driverManagerMap.put(Platform.IOS, new IOSDriverManager());
+    return driverManagerMap;
+  }
 }

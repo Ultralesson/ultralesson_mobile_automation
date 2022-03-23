@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 
 public class ClientSignupTests {
 
+    public static final DriverCreator DRIVER_CREATOR = new DriverCreator();
+
     @Test
     public void clientShouldBeAbleToSignupSuccessfully() {
         //Arrange
@@ -23,11 +25,12 @@ public class ClientSignupTests {
         desiredCapabilities.setCapability("automationName", "UiAutomator2");
         desiredCapabilities.setCapability("app", "app/ul-coach.apk");
 
-        AppiumDriver mobileDriver = new DriverCreator().createDriverContext(desiredCapabilities);
+        DriverCreator driverCreator = new DriverCreator();
+        AppiumDriver mobileDriver = driverCreator.create(desiredCapabilities);
 
         LauncherScreen launcherScreen = new LauncherScreen(mobileDriver); // Assume mobileDriver is created and handy.
         launcherScreen.navToClientSignup();
-        User client = new User("randomclient11@gmail.com",
+        User client = new User("randomclient13@gmail.com",
                 "password",
                 "Client",
                 "1234567890");
@@ -45,6 +48,5 @@ public class ClientSignupTests {
 
         // Assume we have called a date utility to supply Today's Date
         Assert.assertEquals(clientProfile.getMembershipStartDate(), DateUtils.getTodayDate());
-
     }
 }
