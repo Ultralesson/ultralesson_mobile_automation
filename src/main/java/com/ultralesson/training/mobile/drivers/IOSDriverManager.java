@@ -1,4 +1,4 @@
-package com.ultralesson.training.mobile.driver;
+package com.ultralesson.training.mobile.drivers;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;

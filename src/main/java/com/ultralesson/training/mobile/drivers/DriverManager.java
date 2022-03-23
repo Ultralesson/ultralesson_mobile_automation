@@ -1,4 +1,4 @@
-package com.ultralesson.training.mobile.driver;
+package com.ultralesson.training.mobile.drivers;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 

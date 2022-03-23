@@ -1,6 +1,6 @@
 package com.ultralesson.training.mobile;
 
-import com.ultralesson.training.mobile.driver.DriverCreator;
+import com.ultralesson.training.mobile.drivers.DriverCreator;
 import com.ultralesson.training.mobile.models.User;
 import com.ultralesson.training.mobile.screens.HomeScreen;
 import com.ultralesson.training.mobile.screens.LauncherScreen;
