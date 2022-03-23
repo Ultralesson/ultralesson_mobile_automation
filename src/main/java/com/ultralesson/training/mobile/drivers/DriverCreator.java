@@ -6,6 +6,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,8 @@ public class DriverCreator {
     public AppiumDriver createDriverContext(DesiredCapabilities desiredCapabilities) {
         Platform platform = desiredCapabilities.getPlatformName();
         DriverManager<AppiumDriver> mobileDriverManager = getDeviceManagers().get(platform);
-        return new MobileDriverContext(mobileDriverManager).create(desiredCapabilities);
+        URL url = new ServerManager().start();
+        return new MobileDriverContext(mobileDriverManager).create(url,desiredCapabilities);
     }
 
     // Build a Device Managers Map

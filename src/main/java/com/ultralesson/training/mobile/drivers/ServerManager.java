@@ -23,8 +23,7 @@ public class ServerManager {
   private void build() {
     AppiumServiceBuilder appiumServiceBuilder =
         new AppiumServiceBuilder()
-            .usingAnyFreePort()
-            .withArgument(AndroidServerFlag.BOOTSTRAP_PORT_NUMBER, String.valueOf(getRandomPort()));
+            .usingAnyFreePort();
     appiumDriverLocalServiceThreadLocal.set(AppiumDriverLocalService.buildService(appiumServiceBuilder));
   }
 
