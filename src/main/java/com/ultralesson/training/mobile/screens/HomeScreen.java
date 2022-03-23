@@ -3,9 +3,8 @@ package com.ultralesson.training.mobile.screens;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 
-public class HomeScreen {
+public class HomeScreen extends MobileScreen {
 
-    private AppiumDriver appiumDriver;
 
     private By assignments = By.xpath("//*[@text='Assignments']");
     private By notes = By.xpath("//*[@text='Notes']");
@@ -14,26 +13,26 @@ public class HomeScreen {
 
 
     public HomeScreen(AppiumDriver appiumDriver) {
-        this.appiumDriver = appiumDriver;
+        super(appiumDriver);
     }
 
     public ProfileScreen navToProfile() {
-        appiumDriver.findElement(profile).click();
+        waits.waitForElementToBeVisible(profile).click();
         return new ProfileScreen(appiumDriver);
     }
 
     public ProfileScreen navToAssignments() {
-        appiumDriver.findElement(assignments).click();
+        waits.waitForElementToBeVisible(assignments).click();
         return new ProfileScreen(appiumDriver);
     }
 
     public ProfileScreen navToNotes() {
-        appiumDriver.findElement(notes).click();
+        waits.waitForElementToBeVisible(notes).click();
         return new ProfileScreen(appiumDriver);
     }
 
     public ProfileScreen navToResources() {
-        appiumDriver.findElement(resources).click();
+        waits.waitForElementToBeVisible(resources).click();
         return new ProfileScreen(appiumDriver);
     }
 }
