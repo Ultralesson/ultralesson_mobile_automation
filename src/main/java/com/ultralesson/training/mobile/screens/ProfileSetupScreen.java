@@ -14,8 +14,8 @@ public class ProfileSetupScreen extends MobileScreen{
     }
 
     public HomeScreen completeSetup(User client) {
-        waits.waitForElementToBeVisible(phoneNumber).sendKeys(client.getMobile());
-        waits.waitForElementToBeVisible(completeSetup).click();
+        actions.type(phoneNumber, client.getMobile());
+        actions.click(completeSetup);
         return new HomeScreen(appiumDriver);
     }
 }

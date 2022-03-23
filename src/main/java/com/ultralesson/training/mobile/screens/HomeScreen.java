@@ -17,22 +17,22 @@ public class HomeScreen extends MobileScreen {
     }
 
     public ProfileScreen navToProfile() {
-        waits.waitForElementToBeVisible(profile).click();
+        actions.click(profile);
         return new ProfileScreen(appiumDriver);
     }
 
     public ProfileScreen navToAssignments() {
-        waits.waitForElementToBeVisible(assignments).click();
+        actions.click(assignments);
         return new ProfileScreen(appiumDriver);
     }
 
     public ProfileScreen navToNotes() {
-        waits.waitForElementToBeVisible(notes).click();
+        actions.click(notes);
         return new ProfileScreen(appiumDriver);
     }
 
     public ProfileScreen navToResources() {
-        waits.waitForElementToBeVisible(resources).click();
+        actions.click(resources);
         return new ProfileScreen(appiumDriver);
     }
 }

@@ -14,17 +14,17 @@ public class LauncherScreen extends MobileScreen {
     }
 
     public SignupScreen navToClientSignup() {
-        waits.waitForElementToBeVisible(createClientAccountBtn).click();
+        actions.click(createCoachAccountBtn);
         return new SignupScreen(appiumDriver);
     }
 
     public SignupScreen navToCoachSignup() {
-        waits.waitForElementToBeVisible(createCoachAccountBtn).click();
+        actions.click(createCoachAccountBtn);
         return new SignupScreen(appiumDriver);
     }
 
     public SignupScreen navToLogin() {
-        waits.waitForElementToBeVisible(loginBtn).click();
+        actions.click(loginBtn);
         return new SignupScreen(appiumDriver);
     }
 }

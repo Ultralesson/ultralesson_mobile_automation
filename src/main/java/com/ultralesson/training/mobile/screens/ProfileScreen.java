@@ -18,9 +18,9 @@ public class ProfileScreen extends MobileScreen {
 
     public User getProfileDetails() {
         User user = new User();
-        user.setEmail(waits.waitForElementToBeVisible(email).getText());
-        user.setMobile(waits.waitForElementToBeVisible(phoneNumber).getText());
-        user.setMembershipStartDate(waits.waitForElementToBeVisible(membershipStartDate).getText());
+        user.setEmail(actions.getText(email));
+        user.setMobile(actions.getText(phoneNumber));
+        user.setMembershipStartDate(actions.getText(membershipStartDate));
         return user;
     }
 }

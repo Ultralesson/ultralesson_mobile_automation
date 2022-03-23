@@ -27,7 +27,7 @@ public class ClientSignupTests {
 
         LauncherScreen launcherScreen = new LauncherScreen(mobileDriver); // Assume mobileDriver is created and handy.
         launcherScreen.navToClientSignup();
-        User client = new User("randomclient9@gmail.com",
+        User client = new User("randomclient11@gmail.com",
                 "password",
                 "Client",
                 "1234567890");

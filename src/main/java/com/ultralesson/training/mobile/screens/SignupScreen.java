@@ -21,10 +21,10 @@ public class SignupScreen extends MobileScreen {
 
 //    // The signup screen page allows the user to type email, password, fullname
     public ProfileSetupScreen signup(User client) {
-        waits.waitForElementToBeVisible(email).sendKeys(client.getEmail());
-        waits.waitForElementToBeVisible(password).sendKeys(client.getPassword());
-        waits.waitForElementToBeVisible(fullName).sendKeys(client.getFullName());
-        waits.waitForElementToBeVisible(signupBtn).click();
+        actions.type(email, client.getEmail());
+        actions.type(password, client.getPassword());
+        actions.type(fullName, client.getFullName());
+        actions.click(signupBtn);
 
         // Return the HomeScreen as it navigates to HomeScreen on clicking signup.
         return new ProfileSetupScreen(appiumDriver);
