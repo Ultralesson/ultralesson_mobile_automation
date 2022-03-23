@@ -16,7 +16,7 @@ public class ClientSignupTests {
 
     public static final DriverCreator DRIVER_CREATOR = new DriverCreator();
 
-    @Test
+    @Test(groups = "mobile")
     public void clientShouldBeAbleToSignupSuccessfully() {
         //Arrange
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
