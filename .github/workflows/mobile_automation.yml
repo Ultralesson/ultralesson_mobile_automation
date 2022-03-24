@@ -57,8 +57,8 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: playstore
           profile: pixel_3a
-          force-avd-creation: false
-          disable-animations: false
+          force-avd-creation: true
+          disable-animations: true
           script: echo "Generated AVD snapshot for caching."
 
       - name: download appium
@@ -71,8 +71,8 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: playstore
           profile: pixel_3a
-          force-avd-creation: false
-          disable-animations: false
+          force-avd-creation: true
+          disable-animations: true
           script: ./gradlew runTests --stacktrace
 
       - name: Upload Artifacts
