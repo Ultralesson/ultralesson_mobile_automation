@@ -60,6 +60,11 @@ jobs:
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
 
+      - name: download appium
+        run: |
+          npm install -g appium@next
+          appium driver install uiautomator2
+
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -67,4 +72,4 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: ./gradlew runTests
+          script: ./gradlew runTests --stacktrace
