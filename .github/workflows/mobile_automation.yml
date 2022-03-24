@@ -55,9 +55,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: playstore
-          force-avd-creation: false
-          disable-animations: false
+          target: google_apis
           script: echo "Generated AVD snapshot for caching."
 
       - name: download appium
@@ -69,9 +67,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: playstore
-          force-avd-creation: false
-          disable-animations: false
+          target: google_apis
           script: ./gradlew runTests --stacktrace
 
       - name: Upload Artifacts
