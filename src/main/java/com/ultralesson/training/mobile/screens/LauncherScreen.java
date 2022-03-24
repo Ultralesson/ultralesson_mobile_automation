@@ -14,8 +14,13 @@ public class LauncherScreen extends MobileScreen {
     }
 
     public SignupScreen navToClientSignup() {
-        System.out.println(appiumDriver.getPageSource());
-        actions.click(createClientAccountBtn);
+        try {
+            actions.captureScreenshot("screenshot");
+            actions.click(createClientAccountBtn);
+        } catch (Exception e) {
+            actions.captureScreenshot("screenshot1");
+            throw e;
+        }
         return new SignupScreen(appiumDriver);
     }
 
