@@ -40,14 +40,16 @@ jobs:
             distribution: 'adopt'
             cache: gradle
         - name: Grant execute permission for gradlew
-          run: chmod +x gradlew
+          run: |
+            npm install -g appium@next
+            appium driver install uiautomator2
         - name: run tests
           uses: reactivecircus/android-emulator-runner@v2
           with:
             api-level: 29
             arch: x86_64
-            profile: Pixel 3a
+            profile: Nexus 6
             script: |
-              npm install -g appium@next
-              appium driver install uiautomator2
+              avdmanager list device
+              chmod +x gradlew
               ./gradlew runTests --info
