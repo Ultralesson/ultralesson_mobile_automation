@@ -24,6 +24,7 @@ public class ClientSignupTests {
         desiredCapabilities.setCapability("deviceName", "Google Pixel");
         desiredCapabilities.setCapability("automationName", "UiAutomator2");
         desiredCapabilities.setCapability("app", "app/ul-coach.apk");
+        desiredCapabilities.setCapability("appium:appWaitForLaunch", "false");
 
         DriverCreator driverCreator = new DriverCreator();
         AppiumDriver mobileDriver = driverCreator.create(desiredCapabilities);
