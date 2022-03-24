@@ -56,6 +56,7 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           target: google_apis
+          arch: x86_64
           script: echo "Generated AVD snapshot for caching."
 
       - name: download appium
@@ -68,6 +69,7 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           target: google_apis
+          arch: x86_64
           script: ./gradlew runTests --stacktrace
 
       - name: Upload Artifacts
