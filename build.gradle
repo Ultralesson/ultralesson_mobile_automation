@@ -33,8 +33,12 @@ dependencies {
     //selenium
     implementation 'org.seleniumhq.selenium:selenium-java:4.1.1'
 
+    //apache
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
     // Use TestNG framework, also requires calling test.useTestNG() below
     testImplementation 'org.testng:testng:6.14.3'
+
 
 
 
@@ -45,15 +49,12 @@ application {
     mainClassName = 'com.ultralesson.training.mobile.App'
 }
 
-task runTests(type: Test) {
+task runMobileTests(type: Test) {
     outputs.upToDateWhen { false }
     useTestNG {
-        parallel = "methods"
-        threadCount Integer.parseInt(System.getProperty("sessions", "1"))
-        includeGroups System.getProperty("tags", "mobile")
         testLogging.showStandardStreams = true
         useDefaultListeners true
-        outputDirectory = file("$buildDir/" + System.getProperty('tags', 'NONE'))
+        outputDirectory = file("$buildDir/mobile-reports")
     }
 }
 

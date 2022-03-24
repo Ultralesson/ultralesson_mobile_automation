@@ -8,6 +8,7 @@ import com.ultralesson.training.mobile.screens.ProfileScreen;
 import com.ultralesson.training.mobile.screens.SignupScreen;
 import com.ultralesson.training.mobile.utils.DateUtils;
 import io.appium.java_client.AppiumDriver;
+import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -31,7 +32,7 @@ public class ClientSignupTests {
 
         LauncherScreen launcherScreen = new LauncherScreen(mobileDriver); // Assume mobileDriver is created and handy.
         launcherScreen.navToClientSignup();
-        User client = new User("randomclient13@gmail.com",
+        User client = new User(String.format("randomclient%s@gmail.com", RandomUtils.nextInt(16,1000000)),
                 "password",
                 "Client",
                 "1234567890");

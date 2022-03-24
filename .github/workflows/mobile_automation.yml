@@ -73,7 +73,7 @@ jobs:
           profile: pixel_3a
           force-avd-creation: true
           disable-animations: true
-          script: ./gradlew runTests --stacktrace
+          script: ./gradlew runMobileTests --stacktrace
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
