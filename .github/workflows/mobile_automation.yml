@@ -56,6 +56,7 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           target: playstore
+          profile: pixel_3a
           force-avd-creation: false
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
@@ -69,6 +70,7 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           target: playstore
+          profile: pixel_3a
           force-avd-creation: false
           disable-animations: false
           script: ./gradlew runTests --stacktrace
