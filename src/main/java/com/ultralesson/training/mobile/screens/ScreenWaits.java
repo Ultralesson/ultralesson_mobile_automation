@@ -31,7 +31,7 @@ public class ScreenWaits {
 
     private FluentWait<AppiumDriver> initWait(AppiumDriver appiumDriver) {
         return new FluentWait<>(appiumDriver)
-                .withTimeout(Duration.ofSeconds(90))
+                .withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NoSuchElementException.class);

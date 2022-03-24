@@ -55,8 +55,6 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: google_apis
-          arch: x86_64
           script: echo "Generated AVD snapshot for caching."
 
       - name: download appium
@@ -68,8 +66,6 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: google_apis
-          arch: x86_64
           script: ./gradlew runTests --stacktrace
 
       - name: Upload Artifacts
