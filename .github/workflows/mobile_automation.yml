@@ -9,9 +9,9 @@ name: Ultralesson Mobile Automation
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, workflow_dispatch ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, workflow_dispatch ]
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
           with:
             api-level: 29
             arch: x86_64
-            profile: Nexus 6
+            profile: Pixel 3a
             script: |
               npm install -g appium@next
               appium driver install uiautomator2
