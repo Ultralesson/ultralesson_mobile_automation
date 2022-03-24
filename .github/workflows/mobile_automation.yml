@@ -50,15 +50,15 @@ jobs:
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
 
-      - name: create AVD and generate snapshot for caching
-        if: steps.avd-cache.outputs.cache-hit != 'true'
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          target: playstore
-          force-avd-creation: true
-          disable-animations: true
-          script: echo "Generated AVD snapshot for caching."
+#      - name: create AVD and generate snapshot for caching
+#        if: steps.avd-cache.outputs.cache-hit != 'true'
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: ${{ matrix.api-level }}
+#          target: playstore
+#          force-avd-creation: true
+#          disable-animations: true
+#          script: echo "Generated AVD snapshot for caching."
 
       - name: download appium
         run: |
@@ -68,7 +68,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: playstore
+          target: google_apis
           force-avd-creation: true
           disable-animations: true
           script: ./gradlew runMobileTests --stacktrace
