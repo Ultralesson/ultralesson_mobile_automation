@@ -55,8 +55,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: playstore
-          profile: pixel_3a
+          target: default
           force-avd-creation: true
           disable-animations: true
           script: echo "Generated AVD snapshot for caching."
@@ -69,8 +68,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
-          target: playstore
-          profile: pixel_3a
+          target: default
           force-avd-creation: true
           disable-animations: true
           script: ./gradlew runMobileTests --stacktrace
