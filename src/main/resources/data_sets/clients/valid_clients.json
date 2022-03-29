@@ -1,0 +1,10 @@
+{
+  "clientWithPendingAssignments": {
+    "email": "client1@gmail.com",
+    "password": "password"
+  },
+  "clientWithNoAssignments": {
+    "email": "client2@gmail.com",
+    "password": "password"
+  }
+}
