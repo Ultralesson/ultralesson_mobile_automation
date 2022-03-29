@@ -8,14 +8,19 @@ import com.ultralesson.training.mobile.screens.ProfileScreen;
 import com.ultralesson.training.mobile.screens.SignupScreen;
 import com.ultralesson.training.mobile.utils.DateUtils;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.*;
 import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("Signup")
+@Feature("Client Signup")
 public class ClientSignupTests {
 
     @Test(groups = "mobile")
+    @Story("Verify that client is able to signup successfully")
+    @Severity(SeverityLevel.CRITICAL)
     public void clientShouldBeAbleToSignupSuccessfully() {
         //Arrange
         DriverCreator driverCreator = new DriverCreator();

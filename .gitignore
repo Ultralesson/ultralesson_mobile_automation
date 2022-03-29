@@ -9,3 +9,7 @@ out/
 
 # Ignore Idea project specific directory
 .idea
+
+.allure
+allure-report/
+allure-results/
