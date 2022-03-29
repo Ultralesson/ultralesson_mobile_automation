@@ -1,0 +1,17 @@
+{
+  "platformVersion": {
+    "include": [
+      "8.0"
+    ],
+    "operator": ">",
+    "exclude": []
+  },
+  "model": {
+    "include": [],
+    "exclude": []
+  },
+  "udid": {
+    "include": [],
+    "exclude": []
+  }
+}

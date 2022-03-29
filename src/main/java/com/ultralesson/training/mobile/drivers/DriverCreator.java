@@ -4,6 +4,7 @@ import com.testvagrant.ekam.devicemanager.devicefinder.LocalDeviceFinder;
 import com.testvagrant.ekam.devicemanager.models.DeviceFilters;
 import com.testvagrant.ekam.devicemanager.models.TargetDetails;
 import com.ultralesson.training.mobile.data.mappers.DesiredCapabilitiesMapper;
+import com.ultralesson.training.mobile.data.mappers.DeviceFiltersMapper;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
@@ -29,9 +30,13 @@ public class DriverCreator {
    DesiredCapabilities desiredCapabilities = new DesiredCapabilitiesMapper()
            .map(System.getProperty("capabilies", "android"));
 
+   //Read Device Filters
+    DeviceFilters deviceFilters = new DeviceFiltersMapper()
+            .map(System.getProperty("filters", "top_used"));
+
    // Find an available device matching the platform and filters
     TargetDetails device = new LocalDeviceFinder(desiredCapabilities.getPlatformName().name(),
-            new DeviceFilters()).findDevice();
+            deviceFilters).findDevice();
 
     // Create new capabilities based on the device identified
     DesiredCapabilities updatedCapabilities = new DesiredCapabilities(device.asMap());
