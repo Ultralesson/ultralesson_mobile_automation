@@ -15,8 +15,6 @@ import org.testng.annotations.Test;
 
 public class ClientSignupTests {
 
-    public static final DriverCreator DRIVER_CREATOR = new DriverCreator();
-
     @Test(groups = "mobile")
     public void clientShouldBeAbleToSignupSuccessfully() {
         //Arrange
@@ -32,10 +30,7 @@ public class ClientSignupTests {
 
         LauncherScreen launcherScreen = new LauncherScreen(mobileDriver); // Assume mobileDriver is created and handy.
         launcherScreen.navToClientSignup();
-        User client = new User(String.format("randomclient%s@gmail.com", RandomUtils.nextInt(16,1000000)),
-                "password",
-                "Client",
-                "1234567890");
+        User client = User.builder().build().initClient();
 
         //Act
         SignupScreen signupScreen = new SignupScreen(mobileDriver);

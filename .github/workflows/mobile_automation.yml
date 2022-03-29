@@ -28,7 +28,7 @@ jobs:
       with:
         arguments: build
 
-  test:
+  mobile_test:
     runs-on: macos-latest
     needs: build
     strategy:
@@ -50,16 +50,6 @@ jobs:
             ~/.android/adb*
           key: avd-${{ matrix.api-level }}
 
-#      - name: create AVD and generate snapshot for caching
-#        if: steps.avd-cache.outputs.cache-hit != 'true'
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: ${{ matrix.api-level }}
-#          target: playstore
-#          force-avd-creation: true
-#          disable-animations: true
-#          script: echo "Generated AVD snapshot for caching."
-
       - name: download appium
         run: |
           npm install -g appium@next
@@ -78,4 +68,4 @@ jobs:
         if: ${{ always() }}
         with:
           name: mobile_test
-          path: build/
+          path: build/mobile-reports
