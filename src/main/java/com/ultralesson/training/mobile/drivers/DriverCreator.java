@@ -1,12 +1,12 @@
 package com.ultralesson.training.mobile.drivers;
 
+import com.testvagrant.ekam.devicemanager.LocalDeviceManagerProvider;
 import com.testvagrant.ekam.devicemanager.devicefinder.LocalDeviceFinder;
 import com.testvagrant.ekam.devicemanager.models.DeviceFilters;
 import com.testvagrant.ekam.devicemanager.models.TargetDetails;
 import com.ultralesson.training.mobile.data.mappers.DesiredCapabilitiesMapper;
 import com.ultralesson.training.mobile.data.mappers.DeviceFiltersMapper;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -18,11 +18,13 @@ public class DriverCreator {
 
   private ThreadLocal<AppiumDriver> appiumDriverThreadLocal;
   private ThreadLocal<ServerManager> serverManagerThreadLocal;
+  private ThreadLocal<TargetDetails> targetDetailsThreadLocal;
 
   public DriverCreator() {
     appiumDriverThreadLocal = new ThreadLocal<>();
     serverManagerThreadLocal = new ThreadLocal<>();
     serverManagerThreadLocal.set(new ServerManager());
+    targetDetailsThreadLocal = new ThreadLocal<>();
   }
 
   public AppiumDriver create() {
@@ -37,6 +39,7 @@ public class DriverCreator {
    // Find an available device matching the platform and filters
     TargetDetails device = new LocalDeviceFinder(desiredCapabilities.getPlatformName().name(),
             deviceFilters).findDevice();
+    targetDetailsThreadLocal.set(device);
 
     // Create new capabilities based on the device identified
     DesiredCapabilities updatedCapabilities = new DesiredCapabilities(device.asMap());
@@ -60,8 +63,9 @@ public class DriverCreator {
 
 
   public void destroy() {
-    serverManagerThreadLocal.get().stop();
     appiumDriverThreadLocal.get().quit();
+    serverManagerThreadLocal.get().stop();
+    LocalDeviceManagerProvider.deviceManager().releaseDevice(targetDetailsThreadLocal.get());
   }
 
   // Build a Device Managers Map

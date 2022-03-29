@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class DataMapperTests {
 
-    @Test(testName = "Verify that client with pending assignments is sourced correctly.")
+//    @Test(testName = "Verify that client with pending assignments is sourced correctly.")
     public void verifyThatClientWithPendingAssignmentstIsSourcedCorrectly() {
         UserDataClient userDataClient = new UserDataClient();
         User clientWithPendingAssignments = userDataClient
@@ -17,7 +17,7 @@ public class DataMapperTests {
         Assert.assertEquals(clientWithPendingAssignments.getPassword(), "password");
     }
 
-    @Test(testName = "Verify that client with no assignments is sourced correctly.")
+//    @Test(testName = "Verify that client with no assignments is sourced correctly.")
     public void verifyThatCustomerWithNoAssignmentsIsSourcedCorrectly() {
         UserDataClient userDataClient = new UserDataClient();
         User clientWithNoAssignments = userDataClient
