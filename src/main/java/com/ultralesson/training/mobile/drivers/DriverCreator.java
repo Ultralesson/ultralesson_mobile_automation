@@ -1,7 +1,11 @@
 package com.ultralesson.training.mobile.drivers;
 
+import com.testvagrant.ekam.devicemanager.devicefinder.LocalDeviceFinder;
+import com.testvagrant.ekam.devicemanager.models.DeviceFilters;
+import com.testvagrant.ekam.devicemanager.models.TargetDetails;
 import com.ultralesson.training.mobile.data.mappers.DesiredCapabilitiesMapper;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -21,8 +25,22 @@ public class DriverCreator {
   }
 
   public AppiumDriver create() {
-   DesiredCapabilities desiredCapabilities = new DesiredCapabilitiesMapper().map(System.getProperty("capabilies", "android"));
-   return create(desiredCapabilities);
+    // Read default capabilities from the json
+   DesiredCapabilities desiredCapabilities = new DesiredCapabilitiesMapper()
+           .map(System.getProperty("capabilies", "android"));
+
+   // Find an available device matching the platform and filters
+    TargetDetails device = new LocalDeviceFinder(desiredCapabilities.getPlatformName().name(),
+            new DeviceFilters()).findDevice();
+
+    // Create new capabilities based on the device identified
+    DesiredCapabilities updatedCapabilities = new DesiredCapabilities(device.asMap());
+
+    //Merge default capabilities with the updated capabilities
+    desiredCapabilities.merge(updatedCapabilities);
+
+    //Create a session
+    return create(desiredCapabilities);
   }
 
   public AppiumDriver create(DesiredCapabilities desiredCapabilities) {

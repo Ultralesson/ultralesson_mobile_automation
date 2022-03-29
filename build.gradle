@@ -60,6 +60,10 @@ dependencies {
     implementation('io.qameta.allure:allure-testng:2.14.0')
     implementation 'org.aspectj:aspectjweaver:1.9.8.RC3'
 
+    //Ekam
+    implementation('com.testvagrant.ekam:ekam-commons:1.0.2')
+    implementation('com.testvagrant.ekam:ekam-device-manager:1.0.2-beta')
+
 // Use TestNG framework, also requires calling test.useTestNG() below
     testImplementation 'org.testng:testng:6.14.3'
 }
