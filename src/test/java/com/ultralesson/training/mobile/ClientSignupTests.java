@@ -40,10 +40,6 @@ public class ClientSignupTests {
         User clientProfile = profileScreen.getProfileDetails();
 
         // Assert
-        Assert.assertEquals(clientProfile.getEmail(), client.getEmail());
-        Assert.assertEquals(clientProfile.getMobile(), client.getMobile());
-
-        // Assume we have called a date utility to supply Today's Date
-        Assert.assertEquals(clientProfile.getMembershipStartDate(), DateUtils.getTodayDate());
+        client.assertThatUserProfileIsValid(clientProfile);
     }
 }

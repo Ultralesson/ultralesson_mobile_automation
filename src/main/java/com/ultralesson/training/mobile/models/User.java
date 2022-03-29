@@ -1,7 +1,9 @@
 package com.ultralesson.training.mobile.models;
 
 
+import com.ultralesson.training.mobile.utils.DateUtils;
 import lombok.*;
+import org.assertj.core.api.Assertions;
 
 @EqualsAndHashCode(callSuper = true)
 @Data @NoArgsConstructor @AllArgsConstructor
@@ -21,5 +23,11 @@ public class User extends Model {
                 .mobile(faker.numerify("##########"))
                 .build();
 
+    }
+
+    public void assertThatUserProfileIsValid(User that) {
+        Assertions.assertThat(this.email).isEqualTo(that.email);
+        Assertions.assertThat(this.mobile).isEqualTo(that.mobile);
+        Assertions.assertThat(that.membershipStartDate).isEqualTo(DateUtils.getTodayDate());
     }
 }
