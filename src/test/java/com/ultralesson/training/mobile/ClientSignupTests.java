@@ -18,15 +18,8 @@ public class ClientSignupTests {
     @Test(groups = "mobile")
     public void clientShouldBeAbleToSignupSuccessfully() {
         //Arrange
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platformName", "android");
-        desiredCapabilities.setCapability("deviceName", "Google Pixel");
-        desiredCapabilities.setCapability("automationName", "UiAutomator2");
-        desiredCapabilities.setCapability("app", "app/ul-coach.apk");
-        desiredCapabilities.setCapability("appium:appWaitForLaunch", "false");
-
         DriverCreator driverCreator = new DriverCreator();
-        AppiumDriver mobileDriver = driverCreator.create(desiredCapabilities);
+        AppiumDriver mobileDriver = driverCreator.create();
 
         LauncherScreen launcherScreen = new LauncherScreen(mobileDriver); // Assume mobileDriver is created and handy.
         launcherScreen.navToClientSignup();

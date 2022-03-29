@@ -24,4 +24,9 @@ public class JSONDataMapper implements DataMapper {
         }
 
     }
+
+    @Override
+    public <T> T map(String filename, Class<T> tClass) {
+        throw new UnsupportedOperationException();
+    }
 }

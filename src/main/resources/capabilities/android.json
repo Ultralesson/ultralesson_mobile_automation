@@ -1,0 +1,6 @@
+{
+  "platformName": "android",
+  "deviceName": "Google Pixel",
+  "automationName": "UiAutomator2",
+  "app": "app/ul-coach.apk"
+}

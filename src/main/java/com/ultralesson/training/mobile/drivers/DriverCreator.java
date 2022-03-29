@@ -1,5 +1,6 @@
 package com.ultralesson.training.mobile.drivers;
 
+import com.ultralesson.training.mobile.data.mappers.DesiredCapabilitiesMapper;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -19,6 +20,11 @@ public class DriverCreator {
     serverManagerThreadLocal.set(new ServerManager());
   }
 
+  public AppiumDriver create() {
+   DesiredCapabilities desiredCapabilities = new DesiredCapabilitiesMapper().map(System.getProperty("capabilies", "android"));
+   return create(desiredCapabilities);
+  }
+
   public AppiumDriver create(DesiredCapabilities desiredCapabilities) {
     Platform platform = desiredCapabilities.getPlatformName();
     DriverManager<AppiumDriver> mobileDriverManager = getDeviceManagers().get(platform);
@@ -28,6 +34,7 @@ public class DriverCreator {
     appiumDriverThreadLocal.set(appiumDriver);
     return appiumDriverThreadLocal.get();
   }
+
 
   public void destroy() {
     serverManagerThreadLocal.get().stop();
